@@ -10,7 +10,7 @@ window.addEventListener('turbo:load', () =>{
 
     if (price >= 300 && price <= 9999999) {
       const fee = Math.floor(price * 0.1);
-      const gain = price - fee;
+      const gain = Math.floor(price - fee);
       taxPrice.textContent = fee;
       profit.textContent = gain;
     } else {
