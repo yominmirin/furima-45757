@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     }
   end
 
-  with_options numericality: { other_than: 1, message: "を選択してください"} do
+  with_options numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :sales_status_id
     validates :shipping_fee_status_id
@@ -32,5 +32,4 @@ class Item < ApplicationRecord
   def image_presence
     errors.add(:image, 'を添付してください') unless image.attached?
   end
-
 end
