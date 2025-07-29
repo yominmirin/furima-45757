@@ -51,8 +51,8 @@ class ItemsController < ApplicationController
   end
 
   def authorize_user!
-    return unless @item.user != current_user
-
-    redirect_to root_path
+    if @item.user != current_user || @item.order.present?
+      redirect_to root_path
+    end
   end
 end
