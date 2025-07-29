@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_item
+  before_action :authorize_user!
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -35,6 +37,12 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :street_address, :building, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+  end
+
+  def authorize_user!
+    return unless @item.user != current_user
+
+    redirect_to root_path
   end
 
 end
