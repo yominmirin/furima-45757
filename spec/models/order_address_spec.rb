@@ -49,22 +49,22 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeがバリデーションを満たさない場合保存できない' do
         @order_address.postal_code = 'a'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code input correctly")
+        expect(@order_address.errors.full_messages).to include('Postal code input correctly')
       end
       it 'phone_numberが半角数字でない場合保存できない' do
         @order_address.phone_number = 'a'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number input only number")
+        expect(@order_address.errors.full_messages).to include('Phone number input only number')
       end
       it 'phone_numberが9文字以下の場合保存できない' do
         @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number input only number")
+        expect(@order_address.errors.full_messages).to include('Phone number input only number')
       end
       it 'phone_numberが12文字以上の場合保存できない' do
         @order_address.phone_number = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number input only number")
+        expect(@order_address.errors.full_messages).to include('Phone number input only number')
       end
       it 'userに紐づいていない場合保存できない' do
         @order_address.user_id = nil
